@@ -47,9 +47,11 @@ dimnames(GLmtaMatrix)[[2]]<-gsub(".quant.sf","",files)
 dimnames(GLmtaMatrix)
 GLmtaMatrix[rownames(GLmtaMatrix)=="AT5G10140",]
 
-### sanity check
+### PCA comparison
 plotPCA(TLmtaMatrix)
+plotPCA(TLmtaMatrix, labels=F, pch=rep(1:2, each=4), col=rep(1:2, each=4))
 plotPCA(GLmtaMatrix)
+plotPCA(GLmtaMatrix, labels=F, pch=rep(1:2, each=4), col=rep(1:2, each=4))
 
 ### GL mta dge###
 cond <- as.factor(substr(colnames(GLmtaMatrix),1,1))
@@ -112,9 +114,11 @@ dimnames(GLvirMatrix)[[2]]<-gsub(".quant.sf","",vfiles)
 dimnames(GLvirMatrix)
 GLvirMatrix[rownames(GLvirMatrix)=="AT5G10140",]
 
-###sanity check
+### PCA comparison
 plotPCA(TLvirMatrix)
+plotPCA(TLvirMatrix, labels=F, pch=rep(1:2, each=6), col=rep(1:2, each=6))
 plotPCA(GLvirMatrix)
+plotPCA(GLvirMatrix, labels=F, pch=rep(1:2, each=6), col=rep(1:2, each=6))
 
 ### GL vir dge
 cond <- as.factor(substr(colnames(GLvirMatrix),1,1))
@@ -152,7 +156,6 @@ ggplot(tt2, aes(x=logFC,y=-log(FDR),color=logCPM)) +
   geom_point(data = FLCtt2, col = "red", size = 3) +
   geom_point(data = COOLAIRtt2, col = "orange", size = 3)
 
-
 ### importing fip37
 ffiles <- list.files(file.path(dir, "fip37_col_quants"))
 fipfiles <- file.path(dir, "fip37_col_quants", ffiles)
@@ -177,9 +180,11 @@ dimnames(GLfipMatrix)[[2]]<-gsub(".quant.sf","",ffiles)
 dimnames(GLfipMatrix)
 GLfipMatrix[rownames(GLfipMatrix)=="AT5G10140",]
 
-### sanity check
+### PCA comparison
 plotPCA(TLfipMatrix)
+plotPCA(TLfipMatrix, labels=F, pch=rep(1:2, each=3), col=rep(1:2, each=3))
 plotPCA(GLfipMatrix)
+plotPCA(GLfipMatrix, labels=F, pch=rep(1:2, each=3), col=rep(1:2, each=3))
 
 ### fip37 dge###
 cond <- as.factor(substr(colnames(GLfipMatrix),1,1))
@@ -203,7 +208,7 @@ res_LRT_tb[res_LRT_tb$gene == "AT5G10140","logFC"]
 res_LRT_tb[res_LRT_tb$gene == "AT5G01675","logFC"]
 
 ### volcano plot
-tt <- topTags(lrt,n=10000)$table
+tt <- topTags(lrt,n=32310)$table
 names <- rownames(tt)
 rownames(tt) <- NULL
 tt2<- cbind(names,tt)
