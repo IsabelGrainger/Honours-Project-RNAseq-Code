@@ -53,7 +53,7 @@ plotPCA(TLmtaMatrix, labels=F, pch=rep(1:2, each=4), col=rep(1:2, each=4))
 plotPCA(GLmtaMatrix)
 plotPCA(GLmtaMatrix, labels=F, pch=rep(1:2, each=4), col=rep(1:2, each=4))
 
-### GL mta dge###
+### GL mta dge
 cond <- as.factor(substr(colnames(GLmtaMatrix),1,1))
 dge <- DGEList(GLmtaMatrix,group= cond)
 dge <- calcNormFactors(dge, method="TMM")
@@ -186,7 +186,7 @@ plotPCA(TLfipMatrix, labels=F, pch=rep(1:2, each=3), col=rep(1:2, each=3))
 plotPCA(GLfipMatrix)
 plotPCA(GLfipMatrix, labels=F, pch=rep(1:2, each=3), col=rep(1:2, each=3))
 
-### fip37 dge###
+### fip37 dge
 cond <- as.factor(substr(colnames(GLfipMatrix),1,1))
 dge <- DGEList(GLfipMatrix,group= cond)
 dge <- calcNormFactors(dge, method="TMM")
